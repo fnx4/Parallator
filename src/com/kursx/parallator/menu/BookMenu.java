@@ -7,6 +7,7 @@ import com.kursx.parallator.controller.Fb2DialogController;
 import com.kursx.parallator.controller.MainController;
 import com.kursx.parallator.export.CSVExporter;
 import com.kursx.parallator.export.HtmlExporter;
+import com.kursx.parallator.export.HoverHtmlExporter;
 import com.kursx.parallator.export.OfflineExporter;
 import com.kursx.parallator.export.SB2Exporter;
 import javafx.application.Platform;
@@ -35,9 +36,10 @@ public class BookMenu {
         MenuItem csv = new MenuItem("CSV");
         MenuItem sb2 = new MenuItem("SB2");
         MenuItem html = new MenuItem("HTML");
+        MenuItem htmlHover = new MenuItem("HTML Hover");
         MenuItem offline = new MenuItem("Оффлайн перевод");
         imp.getItems().addAll(fb2, json);
-        exp.getItems().addAll(csv, html, sb2);
+        exp.getItems().addAll(csv, html, htmlHover, sb2);
         menu.getItems().addAll(imp, exp, info);
 
         json.setOnAction(event -> {
@@ -79,6 +81,14 @@ public class BookMenu {
             final int progress = rootController.startProgress("Подождите, идет создание html");
             new Thread(() -> {
                 BookConverter.convert(rootController, rootStage, new HtmlExporter());
+                rootController.stopProgress(progress);
+            }).start();
+        });
+
+        htmlHover.setOnAction(event -> {
+            final int progress = rootController.startProgress("Подождите, идет создание html");
+            new Thread(() -> {
+                BookConverter.convert(rootController, rootStage, new HoverHtmlExporter());
                 rootController.stopProgress(progress);
             }).start();
         });

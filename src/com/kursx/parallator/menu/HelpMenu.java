@@ -19,25 +19,7 @@ public class HelpMenu {
     public HelpMenu(Stage stage) {
         menu = new Menu("Помощь");
         MenuItem about = new MenuItem("О Программе");
-        MenuItem update = new MenuItem("Обновить программу");
-        about.setOnAction(event -> Toast.makeText(stage, "Parallator v0.99 by KursX \n kursxinc@gmail.com", 5000));
-        update.setOnAction(event -> update());
-        menu.getItems().addAll(update, about);
-    }
-
-    public static void update() {
-        new Thread(() -> {
-            try {
-                File file1 = new File("Parallator.jar");
-                file1.delete();
-                URL website = new URL("https://github.com/KursX/Parallator/raw/master/release/Parallator.jar");
-                ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-                FileOutputStream fos = new FileOutputStream("Parallator.jar");
-                fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-                System.exit(0);
-            } catch (Exception e) {
-                Logger.exception(e);
-            }
-        }).start();
+        about.setOnAction(event -> Toast.makeText(stage, "Parallator v1.0 by KursX \n kursxinc@gmail.com", 5000));
+        menu.getItems().addAll(about);
     }
 }

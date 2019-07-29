@@ -17,7 +17,7 @@ public class BookConverter {
             result = exporter.process(controller, rootStage);
             Toast.makeText(rootStage, "Файл сохранен\n" + result.getAbsolutePath());
         } catch (Exception e) {
-            Toast.makeText(rootStage, "Произошла ошибка");
+            Toast.makeText(rootStage, "Произошла ошибка \nНе забудьте заполнить описание");
             Logger.exception(e);
         }
         return result != null;
