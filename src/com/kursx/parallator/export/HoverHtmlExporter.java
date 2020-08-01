@@ -52,7 +52,7 @@ public class HoverHtmlExporter implements FileExporter {
         builder.append("</style>\n");
 
         int listCount = list.size() + 1;
-        listCount = listCount / 2;
+        //listCount = listCount / 2;
         int listCountIter = 0;
         for (Chapter chapter : list) {
             System.out.println("> " + chapter.chapterName);

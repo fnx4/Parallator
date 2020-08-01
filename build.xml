@@ -3,6 +3,8 @@
 	<property name="build" location="build" />
 	<property name="release" location="release" />
 	<property name="libs" location="lib" />
+
+	<typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${libs}/kotlin-ant.jar"/>
 	
 	<path id="build.classpath">
 		<fileset dir="${libs}">
@@ -17,6 +19,7 @@
 	
 	<target name="compile" depends="init">
 		<javac encoding="UTF-8" destdir="${build}" >
+			<withKotlin/>
 			<src path="${src}"/>
 			<classpath refid="build.classpath"/>
 		</javac>
